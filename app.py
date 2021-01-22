@@ -17,12 +17,15 @@ from sklearn.model_selection import train_test_split
 import pickle
 import shap
 
+# -----------------
 # Importing the data set 
 from sklearn.datasets import load_boston
 boston_dataset = load_boston()
 boston = pd.DataFrame(boston_dataset.data, columns=boston_dataset.feature_names)
 boston['MEDV'] = boston_dataset.target
+# ------------------
 
+# -------------------
 # Saving the model 
 X = boston.drop(['ZN', 'INDUS', 'CHAS','PTRATIO','B','MEDV'], axis = 1)
 Y = boston['MEDV']
@@ -30,7 +33,8 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.24, rand
 model = RandomForestRegressor()
 model.fit(X, Y)
 saved_model=pickle.dumps(model)
-
+# -------------------
+# -------------------
 # Setting of Background 
 page_bg_img = '''
 <style>
@@ -45,6 +49,7 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
+# Writing on Application 
 st.write("""
 # Boston House Price Prediction App
 This app predicts the **Boston House Price**!
@@ -52,11 +57,13 @@ This app predicts the **Boston House Price**!
 st.sidebar.title("Prediction App")
 
 nav=st.sidebar.radio("",["Home","Data Visualisation","Prediction"])
-
-
+# ---------------
+# ---------------
+# Home Page
 if nav=="Home":
     st.write("## Description of Predictor App")
-    st.write("### The app predcits the median value of owner occupied homes in $1000s")
+    st.write("### The prices of the house indicated by the variable MEDV is our target variable and the remaining are the feature variables based on which we will predict the value of a house.")
+    st.write("### The App predicts the price of house after giving different values as input to different features")
 
     # st.write("## Dataset Description")
 
@@ -65,10 +72,15 @@ if nav=="Home":
     if st.checkbox("Show Tabulated"):
         st.table(boston)
 
+# ---------------
+
+# ---------------
+# Visualization of Data 
 if nav=="Data Visualisation":
     st.sidebar.write("# Choose From the following")
     st.header("Visualisation")
     st.write("### Data visualization is the graphical representation of information and data. By using visual elements like charts, graphs, and maps, data visualization tools provide an accessible way to see and understand trends, outliers, and patterns in data ")
+    
     if st.sidebar.checkbox("Dist Plot"):
         st.write("## Dist Plot")
         sns.set(rc={'figure.figsize':(11.7,8.27)})
@@ -86,16 +98,16 @@ if nav=="Data Visualisation":
         st.write("## Histogram")
         boston.hist(edgecolor='black',figsize=(10,8))
         st.pyplot()
-    # if st.sidebar.checkbox("Pair Plot"):
-    #     st.write("## Pair  Plot")
-    #     sns.pairplot(boston,hue="MEDV")
-    #     st.pyplot()
+
     if st.sidebar.checkbox("Count Plot"):
         st.write("## Count Plot")
         sns.countplot(x="MEDV",data=boston)
         st.pyplot()
-    # if st.sidebar.checkbox("6"):
-    #     st.write("## 6")
+
+# ------------
+
+# ------------
+# Predictoin Application
 if nav=="Prediction":
     st.write("## Prediction of MEDV")
     st.sidebar.header("Specify Input Parameters")
