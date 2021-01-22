@@ -101,14 +101,14 @@ if nav=="Prediction":
     st.sidebar.header("Specify Input Parameters")
 
 
-    val1=st.sidebar.slider("CRIM",boston.CRIM.min(),boston.CRIM.max(),boston.CRIM.mean())
-    val2=st.sidebar.slider("NOX",boston.NOX.min(),boston.NOX.max(),boston.NOX.mean())
-    val3=st.sidebar.slider("RM",boston.RM.min(),boston.RM.max(),boston.RM.mean())
-    val4=st.sidebar.slider("AGE",boston.AGE.min(),boston.AGE.max(),boston.AGE.mean())
-    val5=st.sidebar.slider("DIS",boston.DIS.min(),boston.DIS.max(),boston.DIS.mean())    
-    val6=st.sidebar.slider("RAD",boston.RAD.min(),boston.RAD.max(),boston.RAD.mean())
-    val7=st.sidebar.slider("TAX",boston.TAX.min(),boston.TAX.max(),boston.TAX.mean())    
-    val8=st.sidebar.slider("LSTAT",boston.LSTAT.min(),boston.LSTAT.max(),boston.LSTAT.mean())    
+    val1=st.sidebar.slider("CRIM",float(boston.CRIM.min()),float(boston.CRIM.max()),float(boston.CRIM.mean()))
+    val2=st.sidebar.slider("NOX",float(boston.NOX.min()),float(boston.NOX.max()),float(boston.NOX.mean()))
+    val3=st.sidebar.slider("RM",float(boston.RM.min()),float(boston.RM.max()),float(boston.RM.mean()))
+    val4=st.sidebar.slider("AGE",float(boston.AGE.min()),float(boston.AGE.max()),float(boston.AGE.mean()))
+    val5=st.sidebar.slider("DIS",float(boston.DIS.min()),float(boston.DIS.max()),float(boston.DIS.mean()))    
+    val6=st.sidebar.slider("RAD",float(boston.RAD.min()),float(boston.RAD.max()),float(boston.RAD.mean()))
+    val7=st.sidebar.slider("TAX",float(boston.TAX.min()),float(boston.TAX.max()),float(boston.TAX.mean()))    
+    val8=st.sidebar.slider("LSTAT",float(boston.LSTAT.min()),float(boston.LSTAT.max()),float(boston.LSTAT.mean()))    
     val=[[val1,val2,val3,val4,val5,val6,val7,val8]]
     model_from_pickle=pickle.loads(saved_model)
     prediction=model_from_pickle.predict(val)
