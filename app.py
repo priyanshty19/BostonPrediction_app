@@ -96,31 +96,27 @@ if nav=="Data Visualisation":
 
     if st.sidebar.checkbox("Histogram"):
         st.write("## Histogram")
-        boston.hist(edgecolor='black',figsize=(10,8))
+        boston.hist(edgecolor='black',figsize=(18,12))
         st.pyplot()
 
-    if st.sidebar.checkbox("Count Plot"):
-        st.write("## Count Plot")
-        sns.countplot(x="MEDV",data=boston)
-        st.pyplot()
 
 # ------------
 
 # ------------
 # Predictoin Application
 if nav=="Prediction":
-    st.write("## Prediction of MEDV")
+    st.write("## Prediction of  Median value of owner-occupied homes in $1000's")
     st.sidebar.header("Specify Input Parameters")
 
 
-    val1=st.sidebar.slider("CRIM",float(boston.CRIM.min()),float(boston.CRIM.max()),float(boston.CRIM.mean()))
-    val2=st.sidebar.slider("NOX",float(boston.NOX.min()),float(boston.NOX.max()),float(boston.NOX.mean()))
-    val3=st.sidebar.slider("RM",float(boston.RM.min()),float(boston.RM.max()),float(boston.RM.mean()))
-    val4=st.sidebar.slider("AGE",float(boston.AGE.min()),float(boston.AGE.max()),float(boston.AGE.mean()))
-    val5=st.sidebar.slider("DIS",float(boston.DIS.min()),float(boston.DIS.max()),float(boston.DIS.mean()))    
-    val6=st.sidebar.slider("RAD",float(boston.RAD.min()),float(boston.RAD.max()),float(boston.RAD.mean()))
-    val7=st.sidebar.slider("TAX",float(boston.TAX.min()),float(boston.TAX.max()),float(boston.TAX.mean()))    
-    val8=st.sidebar.slider("LSTAT",float(boston.LSTAT.min()),float(boston.LSTAT.max()),float(boston.LSTAT.mean()))    
+    val1=st.sidebar.slider("Per capita crime rate by town",float(boston.CRIM.min()),float(boston.CRIM.max()),float(boston.CRIM.mean()))
+    val2=st.sidebar.slider("Nitric oxides concentration (parts per 10 million)",float(boston.NOX.min()),float(boston.NOX.max()),float(boston.NOX.mean()))
+    val3=st.sidebar.slider("Average number of rooms per dwelling",float(boston.RM.min()),float(boston.RM.max()),float(boston.RM.mean()))
+    val4=st.sidebar.slider("Proportion of owner-occupied units built prior to 1940",float(boston.AGE.min()),float(boston.AGE.max()),float(boston.AGE.mean()))
+    val5=st.sidebar.slider("Weighted distances to five Boston employment centres",float(boston.DIS.min()),float(boston.DIS.max()),float(boston.DIS.mean()))    
+    val6=st.sidebar.slider("Index of accessibility to radial highways",float(boston.RAD.min()),float(boston.RAD.max()),float(boston.RAD.mean()))
+    val7=st.sidebar.slider("Full-value property-tax rate per $10,000",float(boston.TAX.min()),float(boston.TAX.max()),float(boston.TAX.mean()))    
+    val8=st.sidebar.slider("%""lower status of the population",float(boston.LSTAT.min()),float(boston.LSTAT.max()),float(boston.LSTAT.mean()))    
     val=[[val1,val2,val3,val4,val5,val6,val7,val8]]
     model_from_pickle=pickle.loads(saved_model)
     prediction=model_from_pickle.predict(val)
