@@ -3,4 +3,5 @@ seaborn==0.10.1
 streamlit==0.72.0
 shap==0.38.1
 pandas==1.0.5
+numpy==1.19.5
 scikit_learn==0.24.1
