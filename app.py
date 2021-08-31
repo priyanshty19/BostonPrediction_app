@@ -15,7 +15,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 
 import pickle
-import shap
+# import shap
 
 # -----------------
 # Importing the data set 
